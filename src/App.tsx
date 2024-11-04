@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Input } from './components/input/Input.comonent';
+import { PokemonList } from './components/list/PokemonList.component';
+import dbList from '../src/db/pokemons.json';
+import { IPokemon } from './interfaces/IPokemons';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+  const styleClass = {
+    "pokemon-list": "pokemon-list",
+    "combat-list": "combat-list",
+  }
+
+  const pokemonList: IPokemon[] = dbList.map(pokemon => ({
+    ...pokemon,
+    baseStats: {
+      attack: pokemon["base-stats"].attack,
+      defend: pokemon["base-stats"].defend,
+      specialAttack: pokemon["base-stats"]["special-attack"],
+      specialDefend: pokemon["base-stats"]["special-defend"],
+      speed: pokemon["base-stats"].speed,
+    }
+  }));
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container">
+        <section className='main-section'>
+          <div className="search">
+            <Input />
+            <PokemonList styleClass={styleClass['pokemon-list']} pokemonList={pokemonList} />
+          </div>
+        </section>
+        <section className="combat-section">
+          <h2>LISTOS PARA EL COMBATE</h2>
+          <PokemonList styleClass={styleClass['combat-list']} pokemonList={pokemonList} />
+        </section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
-
-export default App

@@ -1,0 +1,58 @@
+[
+  {
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    "name": "bulbasaur",
+    "number": "45",
+    "height": "7",
+    "type": "grass",
+    "base-stats": {
+      "attack": "12",
+      "defend": "12",
+      "special-attack": "32",
+      "special-defend": "23",
+      "speed": "6"
+    }
+  },
+  {
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    "name": "bulbasaur",
+    "number": "45",
+    "height": "7",
+    "type": "grass",
+    "base-stats": {
+      "attack": "12",
+      "defend": "12",
+      "special-attack": "32",
+      "special-defend": "23",
+      "speed": "6"
+    }
+  },
+  {
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    "name": "bulbasaur",
+    "number": "45",
+    "height": "7",
+    "type": "grass",
+    "base-stats": {
+      "attack": "12",
+      "defend": "12",
+      "special-attack": "32",
+      "special-defend": "23",
+      "speed": "6"
+    }
+  },
+  {
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    "name": "bulbasaur",
+    "number": "45",
+    "height": "7",
+    "type": "grass",
+    "base-stats": {
+      "attack": "12",
+      "defend": "12",
+      "special-attack": "32",
+      "special-defend": "23",
+      "speed": "6"
+    }
+  }
+]
