@@ -17,7 +17,7 @@ export interface IPokemon {
 
 export interface IPokemonListProps {
   styleClass: string;
-  pokemonList: PokemonSimplified[];
+  pokemonList: IPokemonSimplified[];
 }
 
 export interface IPokemonResult {
@@ -39,15 +39,15 @@ export interface IPokemonData {
   weight: number;
   types: Array<{ type: { name: string } }>;
   sprites: { front_default: string };
-  // Agrega más propiedades según necesites
 }
 
-export interface PokemonSimplified {
+export interface IPokemonSimplified {
   image: string;
   name: string;
   number: number;
   height: number;
   types: string[];
+  ready: boolean;
   baseStats: {
     attack: number;
     defense: number;

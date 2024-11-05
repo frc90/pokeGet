@@ -1,12 +1,19 @@
-import { PokemonSimplified } from '../../interfaces/IPokemons';
+import { IPokemonSimplified } from '../../interfaces/IPokemons';
 import './card.css';
 
-export const Card = ({ name, image }: PokemonSimplified) => {
+interface CardProps extends IPokemonSimplified {
+  onAdd: () => void;
+  onRemove: () => void;
+  isInReadyToFight: boolean;
+}
 
+export const Card: React.FC<CardProps> = ({ name, image, onAdd, onRemove, isInReadyToFight }) => {
   return (
     <div>
       <div className="card">
-        <span className="plus-icon">+</span>
+        <span className="plus-icon" onClick={isInReadyToFight ? onRemove : onAdd}>
+          {isInReadyToFight ? '-' : '+'}
+        </span>
         <img className="img-placeholder" src={image} alt={name} />
       </div>
       <div className="card-name">{name.toUpperCase()}</div>

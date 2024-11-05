@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { IResult, PokemonSimplified } from "../interfaces/IPokemons";
+import { IResult, IPokemonSimplified } from "../interfaces/IPokemons";
 import { useApiServiceAllPokemon } from "./apiService";
 
 export const useApiPokemon = () => {
   const { allPokemon, error, loading } = useApiServiceAllPokemon();
   const [pokemonList, setPokemonList] = useState<IResult[] | null>(null);
-  const [listPokemonData, setListPokemonData] = useState<PokemonSimplified[]>(
+  const [listPokemonData, setListPokemonData] = useState<IPokemonSimplified[]>(
     []
   );
 
