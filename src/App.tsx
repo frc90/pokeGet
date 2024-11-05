@@ -1,8 +1,7 @@
 import './App.css'
 import { PokemonList } from './components/list/PokemonList.component';
-import { useApiServiceAllPokemon } from '../src/service/apiService';
-import { useEffect, useState } from 'react';
-import { IResult } from './interfaces/IPokemons';
+import { useState } from 'react';
+import { useApiPokemon } from './service/util';
 
 export const App = () => {
   const styleClass = {
@@ -11,15 +10,9 @@ export const App = () => {
   }
 
   const [inputText, setInputText] = useState<string>('')
-  const { allPokemon, error, loading } = useApiServiceAllPokemon()
-  const [pokemonList, setPokemonList] = useState<IResult[] | null>(null);
-  const [pokemonRTC, setPokemonRTC] = useState([])
+  const { listPokemonData, error, loading } = useApiPokemon()
 
-  useEffect(() => {
-    if (allPokemon?.results) {
-      setPokemonList(allPokemon.results);
-    }
-  }, [allPokemon]);
+  const [pokemonRTC, setPokemonRTC] = useState([])
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -28,7 +21,7 @@ export const App = () => {
     setInputText(e.target.value);
   };
 
-  const pokemonFiltered = pokemonList?.filter((pokemon) =>
+  const pokemonFiltered = listPokemonData?.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(inputText?.toLowerCase())
   );
 
@@ -38,7 +31,7 @@ export const App = () => {
         <section className='main-section'>
           <div className="search">
             <input type="text" placeholder="Que pokemon buscas..." onChange={handlerInput} />
-            {pokemonList && (
+            {listPokemonData && (
               <PokemonList styleClass={styleClass['pokemon-list']} pokemonList={pokemonFiltered ?? []} />
             )}
           </div>
