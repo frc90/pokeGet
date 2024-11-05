@@ -17,5 +17,27 @@ export interface IPokemon {
 
 export interface IPokemonListProps {
   styleClass: string;
-  pokemonList: IPokemon[];
+  pokemonList: IResult[];
+}
+
+export interface IPokemonResult {
+  count: number;
+  next: string;
+  previous: null;
+  results: IResult[];
+}
+
+export interface IResult {
+  name: string;
+  url: string;
+}
+
+export interface IPokemonData {
+  name: string;
+  id: number;
+  height: number;
+  weight: number;
+  types: Array<{ type: { name: string } }>;
+  sprites: { front_default: string };
+  // Agrega más propiedades según necesites
 }
