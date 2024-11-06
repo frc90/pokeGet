@@ -18,6 +18,7 @@ export interface IPokemon {
 export interface IPokemonListProps {
   styleClass: string;
   pokemonList: IPokemonSimplified[];
+  onPokemonClick: (pokemonName: string) => void;
 }
 
 export interface IPokemonResult {

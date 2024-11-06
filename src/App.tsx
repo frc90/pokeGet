@@ -6,6 +6,8 @@ import { useGlobalSelector, GlobalDispatch } from './store';
 import { useDispatch } from 'react-redux';
 import { setSearch, setPokemonList } from './store/actions';
 import { selectSearch, selectPokemonList, selectPokemonsReadyToFight } from './store/selectors';
+import { PokemonDetails } from './components/details/PokemonDetails.component';
+import { IPokemonSimplified } from './interfaces/IPokemons';
 
 export const App = () => {
   const styleClass = {
@@ -21,6 +23,7 @@ export const App = () => {
 
   const [inputText, setInputText] = useState<string>(search);
   const { listPokemonData, error, loading } = useApiPokemon();
+  const [selectedPokemon, setSelectedPokemon] = useState<IPokemonSimplified | null>(null);
 
   useEffect(() => {
     dispatch(setPokemonList(listPokemonData || []));
@@ -36,6 +39,18 @@ export const App = () => {
     pokemon.name.toLowerCase().includes(inputText.toLowerCase())
   );
 
+  const onPokemonClick = (pokemonName: string) => {
+    const selected = pokemonList.find(pokemon => pokemon.name === pokemonName) || null;
+    setSelectedPokemon(selected);
+  };
+
+  const handleBackToList = () => {
+    setSelectedPokemon(null);
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <div className="container">
       <section className='main-section'>
@@ -46,10 +61,15 @@ export const App = () => {
             value={inputText}
             onChange={handlerInput}
           />
-          <PokemonList
-            styleClass={styleClass['pokemon-list']}
-            pokemonList={pokemonFiltered ?? []}
-          />
+          {selectedPokemon ? (
+            <PokemonDetails pokemon={selectedPokemon} onBack={handleBackToList} />
+          ) : (
+            <PokemonList
+              styleClass={styleClass['pokemon-list']}
+              pokemonList={pokemonFiltered ?? []}
+              onPokemonClick={onPokemonClick}
+            />
+          )}
         </div>
       </section>
 
@@ -66,9 +86,10 @@ export const App = () => {
               ...pokemon,
               isInReadyToFight: true,
             }))}
+            onPokemonClick={onPokemonClick}
           />
         )}
       </section>
     </div>
   );
-}
+};

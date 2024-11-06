@@ -26,6 +26,13 @@ export function reducer(
       return { ...state, pokemonList: [...action.payload] };
     }
     case ADD_TO_POKEMON_LIST: {
+      const isAlreadyInFight = state.pokemonsReadyToFight.some(
+        (pokemon) => pokemon.name === action.payload.name
+      );
+
+      if (isAlreadyInFight) {
+        return state;
+      }
       const updatedPokemon = { ...action.payload, ready: true };
       const pokemonsReadyToFight =
         state.pokemonsReadyToFight.length < 6

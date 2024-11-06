@@ -8,13 +8,19 @@
   margin: 10px;
   position: relative;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 
 .plus-icon {
-  background-color: #ccc;
+  background-color: #322ea8;
   border-radius: 50%;
   padding: 5px 10px;
   cursor: pointer;
+  color: aliceblue;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -22,10 +28,8 @@
 }
 
 .img-placeholder {
-  background-color: #eee;
-  border: 1px solid #ccc;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
